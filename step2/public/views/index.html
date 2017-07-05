@@ -1,7 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+<!-- STEP 2: BUILD A SIMPLE ANGULAR/BOOTSTRAP APP  -->
+<!-- REFERENCE: https://v4-alpha.getbootstrap.com/examples/cover/ -->
+<!-- REFERENCE: https://webaudiodemos.appspot.com/AudioRecorder/index.html -->
 
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en"><head>
     <title>Voice-Driven GIF Generator</title>
 
     <!-- Bootstrap core CSS -->
@@ -13,22 +17,17 @@
 
   <body>
 
-    <div class="site-wrapper" ng-app="myApp"> 
+    <div class="site-wrapper" ng-app="myApp">
 
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
 
-          <div ng-controller="RecordingController" class="inner cover">
+           <div ng-controller="RecordingController" class="inner cover">
             <p class="lead">Click on the mic and generate a GIF!</p>
             <p class="lead" style="cursor:pointer;">
 				<img id="record" src="img/mic128.png" ng-class="{'recording': recordingStarted === true, '': recordingStarted === false}" ng-click="toggleRecording()">
-            </p>          
-          
-          	<div id="viz" class="inner cover">
-				<canvas ng-show="gifReceived === false" id="analyser"></canvas>
-				<iframe id="gifFrame" ng-show="gifReceived" ng-src="{{gifURL}}"></iframe>
-			</div>
+            </p> 
           </div>
 
           <div class="mastfoot">
@@ -36,8 +35,6 @@
               <p>Download source code at <a href="https://github.com/Alexgoodman7/voice-driven-gif-generator">GitHub</a></p>
             </div>
           </div>
-          
-		</div>
 
         </div>
 
@@ -45,7 +42,7 @@
 
     </div>
 
-   	<!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
@@ -53,8 +50,7 @@
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     
     <!-- javascript files -->
-	<script src="./js/recorder.js"></script>
-	<script src="./js/controllers/recording-controller.js"></script>
-    
-  </body>
-</html>
+	<script src="../js/controllers/recording-controller.js"></script>
+  
+
+</body></html>

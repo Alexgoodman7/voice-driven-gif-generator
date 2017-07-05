@@ -1,4 +1,9 @@
-//server.js
+/*
+ * STEP 3: BUILD A WEB APP TO CAPTURE MICROPHONE AUDIO
+ * REFERENCE: https://git.daplie.com/Daplie/greenlock-express 
+ */
+
+// server.js
 
 // modules =================================================
 var express        = require('express');
@@ -26,7 +31,7 @@ require('./app/routes')(app); // configure our routes
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public')); 
-app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use('/node_modules', express.static(__dirname + '/../node_modules'));
 
 // start app ===============================================
 require('greenlock-express').create({
