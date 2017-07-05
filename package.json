@@ -1,0 +1,20 @@
+{
+  "name": "gif-generator",
+  "description": "Create your own Language-Driven Application Utilizing Google Cloud Speech API & Node.JS",
+  "main": "server.js",
+  "repository": "https://github.com/Alexgoodman7/gif-generator",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/language": "^0.10.5",
+    "@google-cloud/speech": "^0.9.3",
+    "angular": "^1.6.4",
+    "body-parser": "~1.4.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.2",
+    "giphy-api": "^1.2.6",
+    "greenlock": "^2.1.15",
+    "greenlock-express": "^2.0.11",
+    "jquery": "^3.2.1",
+    "method-override": "~2.0.2"
+  }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> 
+
+    <!-- Custom styles for this template -->
+    <link href="../css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="site-wrapper" ng-app="myApp"> 
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+         <!--
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Voice-Driven GIF Generator</h3>
+            </div>
+          </div>
+          -->
+
+          <div ng-controller="RecordingController" class="inner cover">
+            <p class="lead">Click on the mic and generate a GIF!</p>
+            <p class="lead" style="cursor:pointer;">
+				<img id="record" src="img/mic128.png" ng-class="{'recording': recordingStarted === true, '': recordingStarted === false}" ng-click="toggleRecording()">
+            </p>
+          
+          
+          
+          	<div id="viz" class="inner cover">
+				<canvas ng-show="gifReceived === false" id="analyser"></canvas>
+				<iframe id="gifFrame" ng-show="gifReceived" ng-src="{{gifURL}}"></iframe>
+			</div>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Download source code at <a href="https://github.com/Alexgoodman7/voice-driven-gif-generator">GitHub</a></p>
+            </div>
+          </div>
+          
+		</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <!-- javascript files -->
+	<script src="./js/recorder.js"></script>
+	<script src="./js/controllers/recording-controller.js"></script>
+    
+    <script>
+	</script>
+    
+  </body>
+</html>
