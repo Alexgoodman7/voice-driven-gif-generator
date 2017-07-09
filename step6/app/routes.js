@@ -107,38 +107,8 @@ module.exports = function(app) {
 							entities_string = text;
 						
 						console.log(entities_string);
-						
-						/*
-						 * STEP 7: USE GIPHY API TO GRAB A GIF FROM THE DETERMINED ENTITIES
-						 *
-						 * REFERENCES:
-						 * https://www.npmjs.com/package/giphy-api
-						 */
-						
-						var giphy = require('giphy-api')();
-						
-						var giphy_data = {
-							q: entities_string,
-							limit: 1,
-							rating: "pg"
-						}
-						giphy.search(giphy_data, function (err, res) {
-							console.log(res);
-							var url = res.data[0].embed_url;
-							console.log(url);
-							return original_response.json({'gif_url': url});
-						});
-						
-					  })
-					  .catch((err) => {
-						console.error('ERROR:', err);
-					  });
-					
-					
-				  })
-				  .catch((err) => {
-					console.error('ERROR:', err);
-				});
+					})
+				})
 			}
 		})
 	})	

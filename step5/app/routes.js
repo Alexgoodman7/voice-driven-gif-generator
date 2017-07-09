@@ -39,7 +39,7 @@ module.exports = function(app) {
 				// Imports the Google Cloud client library
 				// Instantiates a client
 				var speech = require('@google-cloud/speech')({
-				  projectId: 'gif-generator-172623', //replace this with your projectId
+				  projectId: 'gif-generator-172623',
 				  keyFilename: '/usr/local/gifgenerator/key.json' //replace this with your service account key location
 				});
 
@@ -67,78 +67,7 @@ module.exports = function(app) {
 					const transcription = results[0];
 
 					console.log(`Transcription: ${transcription}`);
-					
-					/*
-					 * STEP 6: USE GOOGLE NATURAL LANGUAGE API TO DETECT ENTITIES IN TEXT
-					 *
-					 * REFERENCES:
-					 * https://cloud.google.com/natural-language/docs/analyzing-entities#language-entities-string-nodejs
-					 */	
-					
-					// Imports the Google Cloud client library
-					var language = require('@google-cloud/language')({
-					  projectId: 'gif-generator-172623', //replace this with your projectId
-					  keyFilename: '/usr/local/gifgenerator/key.json' //replace this with your service account key location
-					});
-
-					// The text to analyze, e.g. "Hello, world!"
-					var text = transcription;
-					if(text === "")
-						text = "random"; // if there's no text detected, show a random gif
-
-					// Instantiates a Document, representing the provided text
-					const document = language.document({ content: text });
-
-					// Detects entities in the document
-					document.detectEntities()
-					  .then((results) => {
-						const entities = results[1].entities;
-
-						console.log('Entities:');
-						var entities_string = '';
-						entities.forEach((entity) => {
-						  console.log(entity.name);
-							entities_string += entity.name + ' ';
-						  console.log(` - Type: ${entity.type}, Salience: ${entity.salience}`);
-						});
-						
-						//if no entities found, just try to make a gif with the transcript
-						if(entities_string === '')
-							entities_string = text;
-						
-						console.log(entities_string);
-						
-						/*
-						 * STEP 7: USE GIPHY API TO GRAB A GIF FROM THE DETERMINED ENTITIES
-						 *
-						 * REFERENCES:
-						 * https://www.npmjs.com/package/giphy-api
-						 */
-						
-						var giphy = require('giphy-api')();
-						
-						var giphy_data = {
-							q: entities_string,
-							limit: 1,
-							rating: "pg"
-						}
-						giphy.search(giphy_data, function (err, res) {
-							console.log(res);
-							var url = res.data[0].embed_url;
-							console.log(url);
-							return original_response.json({'gif_url': url});
-						});
-						
-					  })
-					  .catch((err) => {
-						console.error('ERROR:', err);
-					  });
-					
-					
-				  })
-				  .catch((err) => {
-					console.error('ERROR:', err);
-				});
+				})
 			}
 		})
 	})	

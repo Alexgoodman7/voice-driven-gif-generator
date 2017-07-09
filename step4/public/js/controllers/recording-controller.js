@@ -31,9 +31,42 @@ function RecordingController($scope,$http,$sce) {
 	
 	$scope.mediaFile = '';
 	$scope.gifReceived = false;
+	
+	
 	function doneEncoding( blob ) {
 		var audioFileUrl = Recorder.setupDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
 		recIndex++;
+		
+		/* 
+		 * STEP 4: POST AUDIO TO NODE API AND SAVE IT AS A LOCAL FILE
+		 * REFERENCE: https://stackoverflow.com/questions/23986953/blob-saved-as-object-object-nodejs
+		 * REFERENCE: https://stackoverflow.com/questions/20045150/how-to-set-an-iframe-src-attribute-from-a-variable-in-angularjs
+		 */
+		
+		var size = blob.size;
+		var type = blob.type;
+
+		var reader = new FileReader();
+		reader.readAsDataURL(blob);
+		reader.addEventListener("loadend", function() {
+			
+			var dataUrl = reader.result;
+			var base64 = dataUrl.split(',')[1];
+			var mediaFile = {
+				fileUrl: audioFileUrl,
+				size: blob.size,
+				type: blob.type,
+				src: base64
+			}
+		  	$http.post('/api/submit', mediaFile)
+				.then(function(response) {
+					console.log(response);
+					$scope.gifReceived = true;				
+					$scope.gifURL = $sce.trustAsResourceUrl(response.data.gif_url);
+				}
+			)
+				
+		})
 	}
 	
 	$scope.getUserMedia = function() {
